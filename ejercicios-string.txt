@@ -1,0 +1,200 @@
+
+---------EJERCICIOS PARTE 1-----------
+1) Programa una función que cuente el número de caracteres de una cadena de texto, pe. miFuncion("Hola Mundo") devolverá 10.
+2) Programa una función que te devuelva el texto recortado según el número de caracteres indicados, pe. miFuncion("Hola Mundo", 4) devolverá "Hola".
+3) Programa una función que dada una String te devuelva un Array de textos separados por cierto caracter, pe. miFuncion('hola que tal', ' ') devolverá ['hola', 'que', 'tal'].
+4) Programa una función que repita un texto X veces, pe. miFuncion('Hola Mundo', 3) devolverá Hola Mundo Hola Mundo Hola Mundo.
+
+---------SOLUCIONES-----------
+//1) Programa una función que cuente el número de caracteres de una cadena de texto, pe. miFuncion("Hola Mundo") devolverá 10.
+
+//SOLUCION 1
+function contar(palabra) {
+    if (typeof(palabra) == "string") {
+        console.log(`la palabra --${palabra}-- tiene ${palabra.length} caracteres`);
+    } else {
+        console.log("NO es una cadena de texto");
+    }
+}
+contar("hola que tal");
+
+//SOLUCION 2
+
+const contarCaracteres = (cadena = "") => (!cadena) ?
+    console.warn("No ingresaste ninguna cadena") :
+    console.log(`la palabra --${cadena}-- tiene ${cadena.length} caracteres`);
+contarCaracteres("hola que tal");
+
+//2) Programa una función que te devuelva el texto recortado según el número de caracteres indicados, pe. miFuncion("Hola Mundo", 4) devolverá "Hola".
+
+//SOLUCION 1
+function cortar(cadena, index) {
+    if (index <= 0) {
+        console.log("Debes ingresar un numero valido para poder cortar la cadena de texto")
+    } else {
+        cadena2 = cadena.slice(0, index);
+        console.log(cadena2);
+    }
+}
+cortar("hola mundo", 0);
+
+//SOLUCION  2
+const recortarCadena = (cadena = "", longitud = undefined) =>
+    (!cadena) ?
+    console.warn("No ingresaste ninguna cadena") :
+    (longitud === undefined) ?
+    console.warn("No ingresaste la longitud a recortar") :
+    console.log(cadena.slice(0, longitud));
+recortarCadena("hola", 3);
+
+//3) Programa una función que dada una String te devuelva un Array de textos separados por cierto caracter, pe. miFuncion('hola que tal', ' ') devolverá ['hola', 'que', 'tal'].
+//SOLUCION 1
+function cadena(texto) {
+    console.log(texto.split(' '));
+}
+cadena("hola que tal como estas");
+
+//SOLUCION 2
+const cadenaArray = (cadena = "", separador = undefined) =>
+    (!cadena) ?
+    console.warn("No ingresaste ninguna cadena") :
+    (separador === undefined) ?
+    console.warn("No ingresaste ningun separador") :
+    console.log(cadena.split(separador));
+cadenaArray("hola que tal como estas?", " ");
+
+//4) Programa una función que repita un texto X veces, pe. miFuncion('Hola Mundo', 3) devolverá Hola Mundo Hola Mundo Hola Mundo.
+//SOLUCION 1
+function repetir(cadena, n) {
+    if (n <= 0) {
+        console.log("Debes ingresar un numero valido para poder repetir la cadena");
+    } else {
+        result = cadena.repeat(n);
+        console.log(result);
+    }
+}
+repetir("cadena", 5);
+
+//SOLUCION 2
+const repetirCadena = (cadena = "", veces = undefined) => {
+    if (!cadena) return console.warn("No ingresaste ninguna cadena");
+    if (veces === undefined) return console.warn("No ingresaste el numero de veces a repetir el texto");
+    if (veces === 0) return console.warn("El numero de veces no puede ser cero");
+    if (Math.sign(veces) === -1) return console.warn("El numero de veces no puede ser negativo");
+    for (let i = 1; i <= veces; i++) console.log(`${cadena},${i}`);
+}
+
+repetirCadena("hola", 5);
+
+---------EJERCICIOS PARTE 2-----------
+5) Programa una función que invierta las palabras de una cadena de texto, pe. miFuncion("Hola Mundo") devolverá "odnuM aloH".
+6) Programa una función para contar el número de veces que se repite una palabra en un texto largo, pe. miFuncion("hola mundo adios mundo", "mundo") devolverá 2.
+7) Programa una función que valide si una palabra o frase dada, es un palíndromo (que se lee igual en un sentido que en otro), pe. mifuncion("Salas") devolverá true.
+8) Programa una función que elimine cierto patrón de caracteres de un texto dado, pe. miFuncion("xyz1, xyz2, xyz3, xyz4 y xyz5", "xyz") devolverá  "1, 2, 3, 4 y 5.
+
+---------SOLUCIONES-----------
+5) Programa una función que invierta las palabras de una cadena de texto, pe. miFuncion("Hola Mundo") devolverá "odnuM aloH".
+
+//SOLUCION 1
+const voltear = (cadena = "") => {
+    (!cadena) ? console.log("Ingresa una cadena de texto"):
+        console.log(cadena.split('').reverse().join(''));
+}
+voltear("hola que tal");
+
+//SOLUCION 2
+const invertirCadena = (cadena = "") =>
+    (!cadena) ? console.warn("Ingresa una cadena") :
+    console.log(cadena.split("").reverse().join(""));
+
+invertirCadena("hola que tal");
+
+6) Programa una función para contar el número de veces que se repite una palabra en un texto largo, pe. miFuncion("hola mundo adios mundo", "mundo") devolverá 2.
+
+//SOLUCION 1
+function buscarPalabra(cadena = "", palabra = "") {
+    
+    if (!cadena) return console.log("Debes ingresar una cadena");
+    if (!palabra) return console.log("Debes ingresar una palabra a buscar");
+    if (typeof(palabra) == "string") {
+        const indices = [];
+        
+        cadena2 = cadena.split(" ");
+        let buscar = cadena2.indexOf(palabra);
+        while (buscar != -1) {
+            indices.push(buscar);
+            buscar = cadena2.indexOf(palabra, buscar + 1);
+        }
+        
+        console.log(`La palabra ${palabra} se encuentra ${indices.length} veces en la cadena`);
+    } else {
+        console.log("Debes ingresar una palabra, no un numero")
+    }
+}
+buscarPalabra("hola hola como estas", "hola");
+
+//SOLUCION 2
+const textoEnCadena = (cadena = "", texto = "") => {
+    if (!cadena) return console.warn("NO ingresaste un texto largo");
+    if (!texto) return console.warn("No ingresaste la palabra a evaluar");
+
+    let i = 0,
+        contador = 0;
+
+    while (i !== -1) {
+        i = cadena.indexOf(texto, i);
+        if (i !== -1) {
+            i++;
+            contador++;
+        }
+    }
+    return console.log(`la palabra ${texto} se repite ${contador} veces`);
+}
+
+textoEnCadena("hola mundo, adios mundo", "mundo");
+
+7) Programa una función que valide si una palabra o frase dada, es un palíndromo (que se lee igual en un sentido que en otro), pe. mifuncion("Salas") devolverá true.
+
+//SOLUCION 1
+function palindromo(cadena) {
+    cadena = cadena.toLowerCase();
+    let palabraReves = cadena.split("").reverse().join("");
+
+    return (cadena === palabraReves) ? console.log(`la frase o palabra "${cadena}" es un palindromo`) :
+        console.log(`la frase o palabra "${cadena}" no es un palindromo`);
+}
+
+palindromo("Salas");
+
+//SOLUCION 2
+const palindromo = (palabra = "") => {
+    if (!palabra) return console.warn("NO ingresaste una palabra o frase");
+
+    palabra = palabra.toLowerCase();
+    let alReves = palabra.split("").reverse().join("");
+
+    return (palabra === alReves) ? console.log(`Si es palindromo, palabra original ${palabra}, palabra al reves ${alReves}`) :
+        console.log(`No es palindromo,palabra original${palabra}, palabra al reves ${alReves}`);
+
+}
+palindromo("Salas");
+
+8) Programa una función que elimine cierto patrón de caracteres de un texto dado, pe. miFuncion("xyz1, xyz2, xyz3, xyz4 y xyz5", "xyz") devolverá  "1, 2, 3, 4 y 5.
+
+//SOLUCION 1
+const eliminarPatron = (cadena = "", patron = "")=>{
+    if(!cadena) return console.log("Debes ingresar una cadena que incluya numeros");
+    cadena = cadena.toLowerCase();
+    cadena = cadena.replace(new RegExp(patron,"g"),"")
+    console.log(cadena);
+}
+eliminarPatron("fsaasd8,asad7,asd4", "[a-z]");
+
+//SOLUCION 2
+const eliminarCaracteres = (texto = "", patron = "") =>{
+    (!texto) ?console.warn("NO ingresaste un texto")
+    : (!patron) ?console.warn("No ingresaste un patron de caracteres")
+    :console.log(texto.replace(new RegExp(patron,"ig"),""));
+}
+eliminarCaracteres("xyz1, xyz2, xyz3, xyz4 y xyz5", "xyz");
+

@@ -1,0 +1,692 @@
+------------------------------JAVASCRIPT---------------------------------
+
+----------VARIABLES-----------
+Es un almacenaje nombrado para datos. Para generar una variable se utiliza la palabra clave "let".
+    Ejemplo: let message; Declara una variable con el nombre "message".
+Despues de esto se puede agregar un valor a la variable, se utiliza el operador de asignacion "=".
+    let message;
+    messaje = 'hola'; --Se almacena una cadena--
+Una vez almacenada la cadena, se puede acceder a ella invocando el nombre de la variable.
+    alert(message);
+Aunque en la mayoria de las veces se puede declarar el contenido de la variable en una sola linea
+    let message = 'Hola'; 
+    alert(message); --Y solo queda mostrar el contenido--
+Tambien se podrian declarar diversas variables en una misma linea pero lo ideal es que se haga en 
+lineas por aparte para mejor comprension.
+    let message = 'Hola', user = 'Angel', age = 25;
+En algunos casos, se puede optar por declaraciones multiples en estilo multilinea.
+    let message = 'Hola',
+        user = 'Angel',
+        age = 25;
+El valor de las variables se pueden cambiar infinidad de veces, cuando el valor de la variable es modificado
+los datos antiguos seran removidos.
+    let message = 'Hola';
+    
+    message = 'Mundo'; --Este sera el nuevo valor de la variable--
+Una variable tambien puede tomar el valor de otra variable.
+    let message = 'Hola Mundo';
+    let hola;
+    
+    hola = message; --La variable "hola" tomara el valor de la variable "message". Ahora las dos variables
+                        tiene el mismo valor--
+
+Las variables unicamente pueden tener valores que incluyen letras, digitos o los simbolos "$ y _"
+El primer caracter no debe ser un numero.
+    Por Ejemplo:
+        let userName;
+        let user_123;
+La manera incorrecta de declara una variable es la siguiente:
+    let 1user;
+    let my-name;
+Otra cuestion a saber es la capitalizacion de las variables, la variable "manzana" no sera igual a la variable
+"manZANA". Son dos variables diferentes.
+
+Hay palabras reservadas que no se pueden utilizar como nombres de variables. Por ejemplo: let,class,return y function.
+
+Para declarar una constante se utiliza la palabra reservada const en vez de let.
+Existe una practica utilizada ampliamente de utilizar constantes. Declarar la constantes con letras mayusculas y el
+guion bajo. Por ejemplo: const COLOR_RED = '#F00';
+Las constantes no pueden ir vacias. Ademas no se puede cambiar el valor de una constante. Pero en cuanto a los objetos o arreglos
+se puede cambiar el valor por que no se accesa directamente al valor como en los valores primitivos, ya que los objetos 
+u arreglos son de tipo compuesto y solo se accede a la referencia más no al valor en si. Es por eso que si se puede cambiar
+el contenido de un objeto o arreglo.
+
+----------TIPOS DE VARIABLES------------
+Existen 2 tipos de datos en Javascript. Los Primitivos y compuestos.
+Las variables primitivas son las siguientes:
+    Numeros: el tipo number se representa tanto numeros enteros como numeros de punto flotante.
+            Ademas de los numeros comunes, existen los "numeros de valores especiales", que son 'Infinity',
+            '-infinity' y 'NaN'. El infinity representa el infinito matematico (Se obtiene de una division entre 0).
+            El NaN representa un error de calculo. Es el resultado de una operacion incorrecta o indefinidad.
+    BigInt: El tipo numero no puede representar valores enteros mayores a (2exp53-1) o 9007199254740991 o menor que (-2exp53-1).
+            Un valor BigInt se crea agregando una n al final de un entero. const BigInt = 123456479746453113321n.
+    String: Un string es una cadena de caracteres que debe colocarse entre comillas. Ejemplo: let str = "Hola".
+            Incluso entre comillas simples: let str2 = 'hola'. Todo string cuenta con propiedades y metodos. Las propiedades 
+            son caracteristicas o atributos y los metodos son acciones o funciones que van a permitir ejecutar algo con la variable
+            o tipo de dato.
+    Booleano: El tipo booleano solo tiene dos valores: true y false. Este tipo de valor solo almacena valores de si/no.
+            True = si, False = no, incorrecto o falso. Los valores booleanos tambien son resultado de comparaciones.
+            Ejemplo: let isGreater = 4 > 1;
+                    alert(isGreater); --Esto dara como resultado true--
+    Null: Este valor no hace referencia a algo existente. Representa "nada", "vacio" o "valor desconocido".
+    Undefined: El valor corresponde a "valor no asignado". Si una variable es declarada pero no asignada, entonces su 
+            valor es "undefined".
+    Objetos y simbolos: El tipo object es especial. Los objetos sirven para almacenar colecciones de datos y entidades más complejas.
+            El tipo symbol se utiliza para crear identificadores unicos para los objetos.
+    Typeof: Este devuelve un tipo de argumento. La llamada a Typeof devuelve una cadena con el nombre del tipo de dato.
+            Ejemplo: typeof 0; --devolvera "number"--
+                     typeof true; --devolvera "boolean"-- 
+                     typeof "foo"; --devolvera "string"--
+    
+El siguiente tipo de datos son los COMPUESTOS:
+    Function o funcion: Es un bloque de contenido con autocontenido, se define una sola vez y que se pueden ejecutar en cualquier 
+            momento. Una funcion puede o no recibir parametros. Incluso puede o no devolver valores. Existen las funciones 
+            declaradas y las funciones expresadas. 
+            - Funcion declarada:
+                Se ocupa la palabra reservada 'function' seguido de un par de parentesis y unas llaves. Dentro de las llaves ira todo  
+                el codigo o cuerpo de la funcion. A una funcion se le debe dar un nombre que va antes de los parentesis.
+                " function saludo () {} "
+                Para que una funcion realice las operaciones declaradas dentro de ella, 
+                se debe llamar a la funcion. Solo se invoca el nombre de la funcion posteriormente se añaden los parentesis con los
+                parametros que sean necesarios; incluso puede ir sin parametros dentro de los parentesis.
+                Dentro de la funcion, hay un operador que tambien devuelve algo que se le asigne. El return sirve para devolver algun
+                valor. Ejemplo de una funcion con el operador return:
+                    function estoEsUnaFuncion() {
+                        console.log("Hola");
+                        return "Mundo";
+                    }  
+
+                    estoEsUnaFuncion() --Aqui es donde se invoca la funcion para realizar las operaciones--
+                En el ejemplo anterior, todo lo que esta dentro de las llaves se ejecutara, solo hasta el return, si en caso de que haya
+                mas codigo despues del return, este sera ignorado y dara un salto a la pila del codigo hasta la linea donde se invoca
+                la funcion.
+                Todas las funciones pueden o no llevar parametros. Los parametros van a ir dentro de los parentesis y despues se solicitaran 
+                cuando la funcion sea invocada. Los parametros son datos que la funcion necesitara para poder realizar ciertas operaciones. 
+                No son necesarias en algunas funciones, solo en las mas complejas o con operaciones en especifico.
+                Ejemplo de una funcion con parametros:
+
+                    function estoEsUnSaludo(nombre, edad){
+                        console.log(`Hola ${nombre} mi edad es ${edad} años.`);
+                    }
+                    estoEsUnSaludo('Miguel', 25); --Se invoca la funcion y dentro de los parentesis van los parametros que se solicitaron--
+                Existen las llamadas funciones declaradas, estas son funciones que se les ha asignado como valor a una variable directamente.
+                Por lo regular se declara la variable como una constante por que sera una funcion que no va a cambiar, por eso es raro o nulo
+                que se utilice la palabra reservada let.
+                Ejemplo de funcion expresada:
+                    const estoEsUnaFuncionExpresada = function(){
+                        console.log("Esto es una funcion expresada");
+                    }      
+                    
+                    estoEsUnaFuncionExpresada(); --Se invoca de igual manera que una funcion declarada--
+                Muy importante, en las funciones declaradas no importa el orden de las invocaciones, se puede invocar la funcion antes de la
+                misma funcion pero en las funciones expresadas esto no se puede, es necesario invocar la funcion despues de la funcion ya escrita.
+                Ya que si no se hace esto, el error que arrojara sera: "Cannot access ...... before initialization", quiere decir que la funcion
+                no se puede llevar a cabo por que no ha sido inicializada. 
+    Array o arreglo: Un array se interpreta con un par de corchetes "[]", dentro de estos iran los datos que conformen el arreglo, ya sea numeros,
+            cadenas de texto, booleanos, incluso podria tener mas arreglos dentro del arreglo. Un arreglo es una coleccion de elementos. 
+            La sintaxis es la siguiente:
+                const arreglo = [];   --Dentro de los corchetes iran datos que conformaran la coleccion.--
+                console.log(arreglo)  --Se imprimira el arreglo en la consola.--
+            En un array, los elementos comenzaran a contarse desde la posicion numero 0. Si un arreglo tiene 4 elementos, internamente el conteo
+            comenzara desde el 0, en este caso el conteo solo dara 3 posiciones.
+            Para poder accesar a los elementos de un array, solo se necesita ingresar por medio del indice en el que esta posicionado el dato
+            que se quiere ver. Por ejemplo:
+                const arreglo: ['hola', 2, 5, true, 'mundo']; --en este ejemplose accedera al elemento '5'--
+                console.log(arreglo[2]); --ya que los elementos comenzaran a contarse desde la posicion 0, el numero '5' se encuentra en la 
+                                            posicion numero 2, ahora para imprimir ese valor solo se debe invocar el nombre del arreglo y con 
+                                            ayuda de los corchetes se debe colocar el numero de indice del dato que se va a imprimir--
+            En algunos casos, existe que un arreglo tiene otros arreglos dentro de el, por ejemplo:
+                const arreglo = ['hola', 5, [45,'mundo',6 ['h', false, 45],56]];
+            En estos casos, para acceder a un segundo nivel de un array, se llaman a los indices como si fueran coordenadas. Por ejemplo:
+            Si se quiere acceder al elemento 'mundo' que esta dentro de un segundo array, se debe hacer lo siguiente:
+                const arreglo = ['hola', 5, [45,'mundo',6 ['h', false, 45],56]]; --Se declara el array--
+                console.log(arreglo[2][1]) --Se coloca entre corchetes los indices donde se encuentra el elemento a sustraer. El primer indice
+                                            indica la posicion donde se encuentra el array hijo, el segundo indice indicara donde se encuentra 
+                                            el elemento dentro del array hijo--       
+            Los array tambien cuenta con propiedades y metodos. Un metodo muy utilizado es el 'push', este metodod agrega elementos dentro
+            de un array. Sintaxis:
+                const arreglo = [2, 4, 6 , 8];
+                console.log(arreglo); --Esto imprimira el arreglo inicial--
+                arrego.push(10); --Aqui el metodo push agregara el numero 10 al final del arreglo. El metodo push agregara cualquier 
+                                    elemento al final de cualquier array--
+            Otro metodo utilizado es el 'pop', este elimina el ultimo elemento de un array:
+                const arreglo = [2, 4, 6, 8];
+                arreglo.pop();
+                console.log(arreglo); --Al imprimir el resultado, se habra eliminado el ultimo elemento del array, en este caso seria el numero
+                                        8.--
+            Para ver mas metodos y propiedades para los array, se puede ver la documentacion en: https://developer.mozilla.org/es/
+    Object u Objeto: Un objeto es una coleccion de datos que son conformados por llaves-valores. La sintaxis de un objeto es la siguiente:
+            const Object = {
+                propiedad1: "valor1",
+                propiedad2: "valor2",
+                propiedad3: "valor3",
+                propiedad4: [valor1, valor2, valor3]
+            }
+            Un objeto ademas de ser conformado por datos primitivos como numeros, cadenas de texto y booleanos, tambien puede tener 
+            arrays y/o funciones. Si se quiere imprimi el objeto por completo con todos los elementos que lo conforman, solo hay que invocarlo
+            con el console.log() --Dentro de las llaves ira el nombre que se le asigno al objeto--.
+            Existen dos maneras de acceder a los valores de un objeto, por medio de una llave o referencia:
+                const Object = {
+                propiedad1: "valor1",
+                propiedad2: "valor2",
+                propiedad3: "valor3",
+                propiedad4: [valor1, valor2, valor3]
+                };
+                console.log(Object["propiedad1"]); --Esto hara que se acceda al valor de la referencia "propiedad1"--
+            Y acceder por medio de sus atributos:
+                const Object = {
+                propiedad1: "valor1",
+                propiedad2: "valor2",
+                propiedad3: "valor3",
+                propiedad4: [valor1, valor2, valor3]
+                };
+                console.log(Object.propiedad1); --Se accede automaticamente al valor de la propiedad o atributo especificado--.
+            Los objetos tienen diversos metodos que se pueden ocupar para realizar funciones en especifico. Se puede ver en:
+            https://developer.mozilla.org/e
+
+----------TIPOS DE OPERADORES------------
+- Operadores aritmeticos: suma(+), resta(-), multiplicacion(*), division(/) y residuo(%).
+- Operadores relacionales: mayor que(>), menor que(<), menor o igual(<=), mayor o igual(>=), diferente que(!=).
+                        Al ser operadores que hacen relacion a valores, el resultado que dara es false o true.
+                        Hay mas operadores de este tipo: asignacion(=), igualar un valor(==) e igualar tipo de dato(===).
+                        Por ejemplo:
+                        console.log(7<8); --Devolvera true--
+                        console.log(7>8); --Devolvera False--
+                        console.log(7<=8); --Devolvera true por que se cumple una condicion--
+                        console.log(7>=8); --Devolvera false por que no se cumple ninguna condicion--
+                        console.log(7!=8); --Devolvera true por que se cumple la condicion--
+                        -------------------------------------------------------------------------------
+                        console.log("7" == 7); --Devolvera true por que dos operadores de igualdad solo comparara entre valores 
+                                                sin importar si el tipo de dato es diferente--
+                        console.log("7" === 7); --Devolvera false ya que aqui el operador igualara pero por el tipo de dato. El
+                                                primer "7" es de tipo string o cadena de texto y el segundo 7 es de tipo numero, 
+                                                asi que no son del mismo tipo dedato y por eso devuelve false--.
+- Operadores de incremento o decremento: Este tipo de operador incrementara de acuerdo al valor que se quiera incrementar. 
+                        Por ejemplo: 
+                        let i = 2;
+                        i+=2
+                        console.log(i); --Esto dara como resultado 4 ya que se incremento de manera automatica dos numeros al valor 
+                                        inicial--.
+- Operadores logicos: Estos operadores son ocupados en ciclos o repetidores. Ayudan a que se cumplan ciertas condiciones. Los
+                        operadores son los siguientes: Not(!), Or(||) y el And(&&). El Not(!) hace que lo verdadero se vuelva falso
+                        y viceversa. El Or(||) cuando se tenga mas de dos condiciones, con que una se cumpla, es decir sea verdadera, 
+                        el or se validara. El And(&&) cuando tenga dos o mas condiciones, todas deberan de cumplirse, es decir, deben 
+                        ser verdaderas para que le And se valide.
+
+----------CONDICIONALES------------
+Condicionales o estructuras de controles un mecanismo que permite controlar el flujo de un programa. Estas estructuras de control 
+estan conformadas por una condicion y una accion. Las acciones dentro de una estructura de control se llevaran a cabo solo si las o la 
+condicion se cumpla, esto de acuerdo a los operadores logicos que se vieron anteriormente. Estos operadores ayudaran a que el programa 
+siga la ruta de accion que tenga el programa.
+Existen diversas estructuras de control, una de estas es el IF/ELSE: es una estructura de control que dependiendo de la condicion 
+llevara a cabo una o diversas acciones.
+Sintaxis:  
+    if ("condicion"){
+        "lineas de codigo de la accion a realizar"
+    }else{
+        "lineas de codigo si la condicion no se cumple o viceversa"
+Tambien esta el IF/ELSE/IF/ELSE, esta estructura de control sirve solo si la condicion que se va a cumplir pueda hacer diversas acciones
+dependiendo de cual sea la condicion.
+Sintaxis:
+    if ("condicion"){
+        "lineas de codigo de la accion a realizar"
+    }else if("condicion"){
+        "lineas de codigo de la accion a realizar"
+    }else if("condicion"){
+        "lineas de codigo de la accion a realizar"
+    }else{
+        "lineas de codigo de la accion a realizar"    
+    }
+Existe otro tipo de estructura un poco mas resumido o mas comprimido aunque en algunos casos puede ser algo confuso. Se llama 
+operador ternario. Este hace que la estructura del codigo sea mas resumida por que solo existira una parte verdadera que tendra como 
+signo ? y la parte falsa que tendra el signo : 
+Sintaxis:
+    let variable = ("condicion") ? "accion verdadera" : "accion falsa";
+Hay una estructura de control que permite evaluar varias condiciones, es el switch - case.
+Sintaxis:
+    switch (key) {
+    case value:
+        "accion a realizar"
+        break;
+
+    default:
+        break;
+    }   
+Esta estructura va a evaluar el contenido de una variable antes asignada. En la estructura hay una palabra reservada que es el break
+esta sirve como un stop a los multiples casos que haya para valuar la variable, puede haber 2 incluso decenas de casos para evaluar
+y el break sirve para detener, ya que si se cumple una condicion, este pausara en donde la condicion sea verdadera y asi no continuar
+con la siguiente condicion o caso.
+Tambien se agrega la condicion default, esta solo se lleva a cabo si ninguna de los casos sea correcto.
+
+----------CICLOS (LOOPS)------------    
+Los ciclos o bucles son estructuras de control repetitivas, quiere decir que esta estructura va a repetir cierto codigo o lineas de 
+codigo hasta que el valor de una variable que se haya declarado para realizar el ciclo llegue al resultado que se le asigno, solo asi
+el ciclo se detendra o se saldra el bucle. 
+Las estructuras de control repetitiva son: for in, for of, while y el do while.
+    - WHILE: Este tipo de estructura hace repeticiones del codigo dependiendo del limite que se le haya puesto a la condicion dentro del 
+            bucle. La sintaxis es la siguiente:
+                let variable = 0;
+                while ("condicion"){
+                    "lineas de codigo o acciones que realizara";
+                    variable++ --El signo ++ hara que el valor de la variable aumente en una unidad hasta que llegue al valor de la 
+                                condicion o el limite--
+                };
+            Es muy importante que siempre se ponga el operador de decremento o incremento dentro del ciclo, ya que si esto no se hace
+            podria generar un ciclo infinito y por consecuencia haria un mal funcionamiento en el propio ordenador, se podria decir que 
+            provocaria un colapso del sistema. Tambien es muy importante que se debe de declarar una variable menor a la condicion asi 
+            podria generar un ciclo sin mayor problema.
+    - DO-WHILE: Esta estructura de control es similar al while solo que aqui, primero se realiza las lineas de codigo que estara dentro
+            de las llaves, osea, la accion y despues evalua la condicion. Mientras que el while primero evalua la condicion y luego realiza
+            la accion que esta declarada en el codigo, en el do-while es lo inverso.
+            Sintaxis:
+                let variable = 0;
+                do {
+                    "lineas de codigo o acciones que realizara";
+                    variable++;
+                }while("condicion");
+    -FOR: Esta estructura de control es mas utilizada que el while o el do-while, debido a que tiene los mismos elementos que el ciclo while
+            solo que este esta resumido en pocas lineas de codigo.
+            Sintaxis:
+                for (let index = 0; index < array.length; index++) {
+                        const element = array[index];
+                    }
+
+                for("inicializacion de la variable";"condicion";"operador de incremento o decremento"){
+                    sentencias que ejecutara el for;
+                    sentencias que ejecutara el for;
+                    sentencias que ejecutara el for;
+                }
+    - FOR IN: El for in es una estructura que solo recorre las propiedades de un objeto. Actua de la misma manera que un for simple solo que 
+            no itera hasta un limite fijo si no que itera hasta las propiedades totales de un objeto.
+            Sintaxis:
+                for (const "nombre aleatorio" in "nombre del objeto") {
+                    "sentencias que se ejecutara";
+                }
+    - FOR OF: El for of es una estructura de control que va a iterar cualquier todos los elementos de cualquier objeto que sea iterable, que 
+            en la mayoria de los casos son los arrays pero tambien se puede iterar una cadena de textos.
+            Sintaxis:
+            for (const iterator of object) {
+                "sentencias que ejecutara el for";
+            }
+              
+----------MANEJO DE ERRORES------------  
+Es una estructura que permite evaluar ciertos fragmentos de codigos y cuando arroje un error, este se almacenara en el catch para poder ser 
+gestionado, se podria decir que en vez de mostrar un error basado en el lenguaje de Javascript, solo se puede mostrar un mensaje mas entendible
+para aquella gente que no esta tan inmersa en el ambito de la programacion. Esta estructura se llama try/catch.
+    Sintaxis:
+        try {
+            "codigo a evaluar"
+        } catch (error) {
+            "captura cualquier error surgido en el try"
+        }finally{
+            "se ejecutara siempre al final del bloque try/catch"
+        }   -----el finally ya no se ocupa mucho---
+Una vez que la estructura try/catch detecta un error en el codigo, este detiene toda la secuencia.
+
+----------BREAK & CONTINUE------------  
+Estas palabras ayudan un poco en las estructuras de control como los loops (while, do-while, for, switch-case). La palabra break hace que pare 
+la secuencia de codigo de manera que sale de el, osea, ya no continua con las demas lineas de codigo, esto en caso de que se declare una condicion
+que contenga un break.
+    Por ejemplo:
+        const numeros = [1,2,3,4,5,6,7,8,9,0];
+        for(let i = 0;i < numeros.length;i++){
+            if(i === 5){
+                break;           ------El break detendra la iteracion del array numeros----
+            }
+            console.log(numeros[i]);
+        }
+El continue sirve igual en los loops solo que este no rompe con la iteracion de un bucle, si no que cuando existe esta palabra dentro de una condicion
+si esta se cumple, el continue salta la secuencia de iteracion de acuerdo con la condicion que se establesca.
+    Por ejemplo:
+        const numeros = [1,2,3,4,5,6,7,8,9,0];
+        for(let i = 0;i < numeros.length;i++){
+            if(i === 5){
+                continue;           ------El continue omitira el valor de la posicion numero 5 pero continuara iterando el resto de valores----
+            }
+            console.log(numeros[i]);
+        }
+
+----------DESTRUCTURACION------------  
+Es una forma de agregar valores a arrays u objects de una manera dinamica o mas agil. Permite desempaquetar valores de arreglos u objetos en distintas
+variables.
+    ejemplo:
+    let numeros = {1,2,3,4};
+    ---------sin desestructuracion----------
+    let one = numeros[0],
+        two = numeros[1],
+        three = numeros[2],
+        four = numeros[3]
+    console.log(one,two,three,four);  ------Esto imprimira el contenido del arreglo numeros pero asignado en diferentes variables-----
+
+    ---------con desestructuracion-----------
+    const[one,two.three,four] = numeros;
+    console.log(one,two,three,four); -------Esto imprimira el contenido del arreglo numeros pero asignado en diferentes variables-----
+
+    const persona = {
+        nombre: "miguel",
+        apellido: "ruiz",
+        edad: 25
+    }
+
+    let {nombre,edad,apellido} = persona;
+    console.log(nombre,apellidos,edad); -----Tambien se puede imprimir valores dentro de un objeto-----
+
+----------OBJETOS LITERALES------------  
+Es una forma nueva de escribir atributo y metodos, incluso hasta asignarlos. Es una manera mas simplificada de declarar valores.
+    Ejemplo:
+
+    ------------SIN OBJETOS LITERALES----------
+    let nombre = "felipe",
+        edad = 5;
+
+    const perro = {
+        nombre: nombre, ---------se declara una variable con el valor de una variable asignada por fuera del objeto------
+        edad: edad,     ---------se declara una variable con el valor de una variable asignada por fuera del objeto------
+        ladrar = function(){
+            console.log("guauu guauu");
+        }
+    }
+
+    console.log(perro); ---------imprimira lo que haya dentro del objeto---------
+    perro.ladrar();     ---------ejecutara la funcion dentro del objeto----------
+
+    ------------CON OBJETOS LITERALES----------
+    const dog = {
+        nombre,          --------YA NO ES NECESARIO DECLARAR UNA VARIABLE CON EL VALOR DE OTRA VARIABLE EXTERNA, JAVASCRIPT TOMARA 
+        edad,                    LE ASIGNARA EL VALOR A LA VARIABLE POR QUE ESTA DECLARADA CON EL MISMO NOMBRE DE LA VARIABLE EXTERNA-----
+        ladrar(){
+            console.log("guauu guauu guauu");
+        }
+    }
+    console.log(dog);  ---------imprimira lo que haya dentro del objeto---------
+Incluso si se quiere agregar otro atributo, no se altera la ejecucion, todo se imprime normalmente.
+
+----------PARAMETROS REST & OPERADOR SPREAD------------  
+    ---------Parametros REST---------
+Son un forma de agregar parametros infinitos a una funcion, esto de manera virtual, lo cual ayuda a algunas operaciones. Esta
+expresada con tres puntos suspensivos(...) antes de la variable infinita.
+    Ejemplo:
+    function sumar (a, b, ...c){
+        let resultado = a + b;
+
+        c.forEach(function(n){
+            resultado += n;
+        });
+        return resultado
+    }
+
+    console.log(sumar(1,2,3)); ----------De esta manera se puede ir agregando valores de manera infinita, y el codigo hara la suma de todos-----
+    console.log(sumar(1,2,3,4));
+    console.log(sumar(1,2,3,4,5));
+
+    ---------Spread Operator---------
+Permite expandir una expresion para almacenar multiples elementos. Se puede ejecutar en cualquier sentencia del codigo.
+    Ejemplo:
+    const arr1 = [1,2,3,4,5],
+        arr2 = [6,7,8,9,0];
+
+    console.log(arr1, arr2); ----Esto imprimira el contenido de los arreglos----
+
+    const arr3 = [...arr1,...arr2];
+    console.log(arr3); ---Se hara un arreglo mas con los valores de los arreglos 1 y 2, se declara el array y los parametros que contendra sera
+                            los arreglos anteriores pero antes con puntos suspensivos. De esta manera se unen los arreglos para hacer uno solo----
+
+----------ARROW FUNCTION------------
+Es una nueva forma de definir funciones anonimas, que sean expresadas. Esta forma hace que una funcion pueda ser declarada de una forma mas
+resumida: const estoEsUnaFuncion = () => console.log("Hola, que tal"); 
+Esto se puede hacer si la funcion tiene una sola linea de codigo, se pueden omitir las llaves que por lo regular esta conformada una funcion.
+En caso se que tenga mas lineas de codigo, si deben de ir las llaves de apertura y cierre. Por ejemplo:
+    const estoEsUnaFuncion = () => {
+        console.log("Hola, que tal");
+        console.log("esto es una funcion");
+        console.log("expresada con arrow function");
+    }
+Incluso, cuando una funcion con arrow function se le agregan parametros, ya no sera necesario que se pongan dentro de parentesis, funciona de
+igual manera si las tuviera, por ejemplo:
+    const saludar = nombre => console.log(`Hola ${nombre}, como estas?`);
+    saludar("miguel");
+En algunas funciones que devuelven algo, tambien ya no es necesario agregar la palabra return, ya que las arrow function simplifican este metodo.
+    Ejemplo:
+    function sumar(a,b) = {
+        return a+b;
+    }
+    console.log(sumar(4,5)); ------Funcion declara normal------
+
+    const sumar = (a,b) => a +b;
+    console.log(sumar(4+5)); ------Arrow function con return incorporado------
+
+----------PROTOTIPOS------------
+Apartir de aqui ya se inicia con el tema de la Programacion Orientada a Objetos o POO. 
+En la POO hay 4 palabras que se utilizan para este ambito:
+    - Clases: Es un modelo a seguir.
+    - Objeto: Es una instancia de una clase.
+        - Atributos: Es una caracteristica o propiedad de un objeto. Son variable dentro de un objeto.
+        - Metodos: Son las acciones que un objeto puede realizar. Son funciones dentro de un objeto.
+¿Que es un prototipo en Javascript? Es un mecanismo por el cual un objeto puede heredar atributo y metodos de un objeto padre, es decir, funciones.
+Para generar prototipos en Javascript se utiliza algo llamado Funcion constructora, esta funcion ayuda a crear objetos apartir de ella
+son necesidad de hacer repeticiones de codigo.
+    Ejemplo de una funcion constructora:
+        Function Animal(nombre, genero){
+            this.nombre = nombre; ----Es importante que cuando se hace una funcion constructora, esta deba tener la palabra reservada this 
+            this.genero = genero;       tanto en los atibutos como en los metodos, ya que esta palabra tomar refencia los datos de ese objeto para
+                                        poder instanciar otro con similares atributos y metodos----------
+            this.sonar = function(){
+                console.log("Hago sonidos por que estoy vivo");
+            }
+        }
+Una vez creada la funcion constructora, se pueden hacer objetos en base a esa funcion...
+        const perro = new Animal("firulais", "macho"); ----Es importante que al crear un objeto en base a una funcion constructora, se debe añadir
+                                                            la palabra reservada "new" despues de declarar el nombre del objeto, ya que esta palabra 
+                                                            tomara los parametros de la funcion constructora para hacer el objeto.----
+        console.log(perro); ---Y ya solo se imprime el contenido del nuevo objeto en este caso, nombre = firulais, genero = macho y la funcion sonar
+                                se va a heredar al nuevo objeto.-------
+Aunque hay un problema, ya que si se generan demasiados objetos, todos los atributos y metodos de la funcion constructora se estarian duplicando 
+lo que generaria un desperdicio de memoria; hay que recordar que las variables almacenan datos en la memoria, entonces esto ya no seria tan recomendable
+lo mas ideal seria agregar lo metodos al prototipo.
+    Ejemplo: 
+        function Animal(nombre, genero) {
+            //atributos
+            this.nombre = nombre;
+            this.genero = genero;
+            //metodos
+            this.sonar = function() {
+                console.log("Hago sonidos por que estoy vivo");
+            }
+        } ----lo recomendable es quitar los metodos y asignarlos por fuera a los prototipos---
+
+        function Animal(nombre, genero) {
+            //atributos
+            this.nombre = nombre;
+            this.genero = genero;
+        } 
+
+        //metodos
+        Animal.prototype.sonar = function() {
+            console.log("Hago sonidos por que estoy vivo");
+        }
+        const perro = new Animal("firulais", "macho"),
+        console.log(perro); ------Al imprimir el objeto "perro" todo funcionara de igual manera---
+
+----------CLASES Y HERENCIA------------     
+Clases: Para definir una clase, se ocupa la palabra reservada "class" ademas que que las clases no llevan parametros, estos son sustituidos por un metodo
+llamado "constructor", este metodo recibira las propiedades.
+    Ejemplo:
+        class Animal{
+            constructor(nombre, genero){
+                this.nombre = nombre;
+                this.genero = genero;
+            }
+        }
+El constructor es un metodo especial que se ejecuta en el momento de instanciar una clase.
+Ahora, para definir metodos dentro de una clase se utilizan la sintaxis se los objetos literales, los metodos si pueden recibir parametros si es que los solicitara.
+    Ejemplo:
+        class Animal{
+            constructor(nombre, genero){
+                this.nombre = nombre;
+                this.genero = genero;
+            }
+            -------------METODO-----------
+            sonido(){
+                console.log("hago sonidos por que estoy vivo");
+            }
+        }
+En las clases, ya no es necesario sacar los metodos de ella para asignarlas al prototipo, como se veia anteriormente en el tema de prototipos, que si los metodos
+se dejaban dentro de los objetos y al querer realizar multiples consultas, estos se duplicarian y provocaria que se desperdice memoria. En las clases no pasa eso,
+ya que en automatico, los metodos seran asignados al prototipo si necesidad de hacerlo manualmente. Y ya solo se llama a la clase con un nuevo objeto que sera
+asignado, como se veia anteriormente: "const Gato = new Animal("michi","macho");" y luego se imprime la variable "Gato".
+Ahora, para realizar las heredaciones, tambien se ocupa la palabra reservada super pero la sintaxis de heredacion cambia totalmente.
+    Ejemplo:
+        class Perro extends Animal{
+            constructor(nombre, genero, tamanio){
+                //-------El metodo super() manda a llamar el constructor de la clase padre
+                super(nombre, genero);
+                this.tamanio = tamanio;
+            }
+            sonido(){
+                console.log("Soy un perro y mi sonido es un ladrido");
+            }
+            ladrar(){
+                console.log("Guauuuu guauuuu");
+            }
+        }
+Si miramos el ejemplo, para heredar propiedades de una clase padre, que es Animal, se ocupa la palabra reservada "expends" seguido de la clase padre.
+
+----------GETTERS Y SETTERS------------
+Son metodos especiales que nos permiten establecer y obtener los valores de atributos de nuestra clase. Es importante saber que estos metodos tambien 
+utilizan el "this", que es un keyword que hace referencia a un objeto siempre y cuando este este dentro de un objeto.
+Ahora, un metodo getter es una funcion que obtiene un valor de una propiedad, el setter es una funcion que establece un valor de una propiedad.
+    Ejemplo:
+        const obj = {
+            get prop() {
+                return this.__prop__;
+            },
+            set prop(value) {
+                this.__prop__ = value * 2;
+            },
+        };
+
+        obj.prop = 12;
+
+        console.log(obj.prop);
+    
+----------OPERADORES DE CORTOCIRCUITO------------
+Estos funcionan poniendo dos condiciones con el operador logico "or" o el "and". Cortocircuito Or: Cuando el valor de la izquierda en la expresion siempre pueda
+validarse a true, es el valor que se cargara por defecto.
+    Ejemplo:
+        
+        function saludar(nombre) {
+            nombre = nombre || "Desconocido";
+            console.log(`Hola ${nombre}`);
+        }
+
+        saludar("Miguel"); -----Cuando se ejecuta la funcion con un parametro, dara un resultado true----
+        saludar();          ----Y cuando la funcion se ejecuta sin un parametro, tomara el valor false que se definio con el operador OR-----
+
+        console.log("cadena" || "valor derecha"); ------Esto es un ejemplo de un operador de cortocircuito-----
+        console.log(true || "valor derecha");       ----Como el valor es verdadero, imprimira el valor izquierdo----
+        console.log(15 || "valor derecha");        
+        console.log(false || "valor derecha");      ----Si el valor es falso, se imprimira el valor de la derecha------
+Cortocircuito And: Cuando el valor de la izquierda en la expresion siempre pueda validar a false, es el valor que se cargara por defecto.
+    Ejemplo:
+        console.log("cadena" && "valor derecha");   ---Hace lo contrario del Or----
+        console.log(true && "valor derecha");
+        console.log(15 && "valor derecha");
+
+        console.log(false && "valor derecha");
+        console.log(null && "valor derecha");
+        console.log(0 && "valor derecha");
+            
+----------ALERT, CONFIRM Y PROMPT-----------
+Estos metodos son importantes para la interaccion con el usuario. Estos metodos salen del objeto padre Window.
+    -window.alert("Mensaje que se mostrara") -----Este metodo hace que aparezca una ventana emergente en el navegador------
+    -window.confirm("Mensaje que se mostrara") ---Aparecera un ventana similar al alert solo que tambien se le agrega dos opciones para cerra la ventana 
+                                                    "Aceptar" y "Cancelar"------
+    -window.prompt("Mensaje que se mostrara") ----Similar a los dos metodos anteriores, solo que se le agrega un espacio para que el usuario pueda ingresar
+                                                    datos y esto hace que pueda interactuar de una manera muy simple con el navegador----
+Y aunque estos metodos salen del objeto window, ahora ya no es necesario acceder al metodo con el objeto window; osea, no es necesario poner el "window."
+si se pone solo el metodo, funcionara de la misma manera como si se invocara con el objeto window.
+A estos metodos se les puede asignar una variable, esto con el fin de guardar el valor del metodo en una variable. El metodo alert como solo es un mensaje
+emergente no guardara ningun dato, en todos los casos sera un valor undefined, el metodo confirm almacenara un valor dependiendo de cual de los botones que
+tiene sea presionado. El boton Aceptar devolvera un valor true y el boton Cancelar devolvera false. Y por ultimo, el prompt, ya que este agrega un input o 
+un espacio para escribir, puede almacenar el valor que el usuario ingrese en ese input, algo importante es que si se vuelve a repetir el valor que se 
+ingreso antes, devolvera un valor null.
+
+---------EXPRESIONES REGULARES-----------
+Las expresiones regulares son una secuencia de caracteres que forman un patron de busqueda y que es utilizado en la busqueda de cadenas de texto. Tambien 
+considerados como objetos.
+Estas expresiones o declaraciones cuentan con unas banderas que son comodines que permiten modificaciones que se pueden agregar a la expresion regular.
+    Sintaxis:
+        let expReg = RegExp("cadena de caracteres a buscar", "bandera");
+    Ejemplo: Se quiere buscar un caracter o cadena de caracteres en la siguiente expresion:
+        let cadena = ""Lorem ipsum dolor sit, amet consectetur adipisicing elit. Aperiam facere quos ullam fugiat 
+                        dicta, tenetur voluptate unde vel dolore amet.";
+        let expReg = new RegExp("lorem", "g"); ---la letra g se ingresa como bandera ya que es un comodin que significa que buscara en toda la cadena de caracteres.
+                                                significa global------
+Para ver mas sobre las expresiones regulares, ingresar a: https://developer.mozilla.org/es/docs/Web/JavaScript/Guide/Regular_Expressions
+Hay otras formas de declarar una expresion regular, tanto como la invocar el metodo RegExp o solo poniendo la cadena a buscar entre diagonales "//"
+    Ejemplo:
+    let expReg2 = "/lorem/";
+Ya solo queda imprimir el resultado en un console. Pero ademas de que se ingresara la variable, debe ir seguido por alguno de los metodos con los que cuentas las 
+expresiones regulares, como test(), exec(), split(), match(), etc. Todos estos metodos se pueden ver mas a detalle en el enlace de las expresiones regulares que
+se indico anteriormente.
+    Ejemplo:
+        let cadena = ""Lorem ipsum dolor sit, amet consectetur adipisicing elit. Aperiam facere quos ullam fugiat 
+                        dicta, tenetur voluptate unde vel dolore amet.";
+        let expReg = new RegExp("lorem", "g"); ---Expresion regular con ayuda del metodo RegExp---
+        let expReg2 = "/lorem/";           ---Expresion regular sin ayuda del metodo RegExp---
+
+        console.log(expReg.test(cadena)); ---Devolvera true por que la palabra lorem si se encuentra en la cadena---
+        console.log(expReg.exec(cadena)); --Devolvera un array con todos los datos de la expresion buscada en la cadena---
+
+---------FUNCIONES ANONIMAS AUTOEJECUTABLES-----------
+Es una funcion que engloba todo el codigo que se quiere ejecutar. Ademas de que se definen sino que tambien se ejecutan al momento de crearse y por que no tienen 
+nombre. Permite pasar parametros de una manera mas amigable. 
+    Sintaxis:
+        (function(){
+            "Lineas de codigo a ejecutar"
+        })();
+Las funciones anonimas no llevan nombre y ademas deben ir dentro de unos parentesis.
+    Ejemplo:
+        (function(){
+            console.log("Esto es una funcion anonima")
+        })();
+Existen diversas maneras para declarar las funciones anonimas, son las siguientes:
+    - Version clasica: (function(){
+                            console.log("Esta es la forma clasica");   
+                        })();
+    - Version Crockford: ((function(){
+                            console.log("Esta es la forma Crockford");
+                         })());
+    - Version Unaria:  +function(){
+                            console.log("Esta es la forma unaria");
+                        }();
+    - Version Facebook: !function(){
+                            console.log("Esta es la forma facebook");
+                        }();
+                
+---------MODULOS (IMPORT - EXPORT)-----------
+Los modulos en Javascript permiten llamar los archivos no solo desde el archivo html sino desde un archivo js externo.
+Habra algunos casos en los que sera necesario llamar sentencias a archivos Javascript entre si, para esto estan las palabras reservadas export e import los cuales
+serviran para lo anterior comentado.
+    Sintaxis de export:
+        export ----seguido de la funcion que se desea exportar a otro archivo js-----
+    Sintaxis de import:
+        import {nombre de la funcion a exportar} from "ruta del archivo que se importaran los datos"
+Ahora, para visualizar el resultado en el navegador, es importante que al crear el script para llamar el archivo donde se encuentren todos los datos exportados, ademas
+de poner la ruta del archivo, tambien se debe especificar de que tipo es el archivo, ya que si no se hace esto, provocaria errores de ejecucion.
+    Sintaxis: <script src="ruta del archivo js" type="module"></script>
+No solo se pueden exportar constantes, tambien variables independientes e incluso objetos.
+Hay veces que se necesitara que se importe por defecto ya sea una funcion o clases. Para esto existe la palabra reservada "default" que va seguido de la palabra
+"export"
+    Ejemplo:
+        export default function saludar(){
+            console.log("hola que tal");
+        }
+Ya solo se importa la funcion como si se llamara una funcion, y por logica hay que importar la funcion con la palabra reservada "import". Es importante comentar que 
+exportar de manera defaul, solo se puede hacer una vez, ya que si lo intentas hacer con otra funcion o variable, arrojara un error. El error hara referencia a que 
+la palabra default esta repetida. En caso de que se quiera exportar por defecto una variable o constante, primero se debe de declarar la variable y despues se exporta
+ya con el default para evitar errores.
+    Ejemplo:
+        const contrasena = "qwerty";
+        export default contrasena;
+
